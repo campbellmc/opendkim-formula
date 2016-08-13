@@ -3,6 +3,10 @@
 
 {% from "opendkim/map.jinja" import opendkim with context %}
 
+include:
+  - opendkim.install
+  - opendkim.service
+
 opendkim-config:
   file.managed:
     - name: {{ opendkim.config }}
