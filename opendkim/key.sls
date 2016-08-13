@@ -37,7 +37,7 @@ include:
 
 {% endfor %}
 
-{% if 'manageKeyTable' in opendkim and 'KeyTable' in opendkim.conf and opendkim.manageKeyTable == true %}
+{% if 'manageKeyTable' in opendkim and 'KeyTable' in opendkim.conf and opendkim.manageKeyTable == true and 'privateKey' in opendkim %}
 
 {{ opendkim.conf.KeyTable }}:
   file.managed:
@@ -57,7 +57,7 @@ include:
       - pkg: opendkim_packages
 {% endif %}
 
-{% if 'manageSigningTable' in opendkim and 'SigningTable' in opendkim.conf and opendkim.manageSigningTable == true %}
+{% if 'manageSigningTable' in opendkim and 'SigningTable' in opendkim.conf and opendkim.manageSigningTable == true and 'signingTable' in opendkim %}
 
 {%- set type, filePath = opendkim.conf.SigningTable.split(':') %}
 {{ filePath }}:
