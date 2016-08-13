@@ -18,7 +18,6 @@
       - pkg: opendkim_packages
 
 {% for selector, key in domain.items() %} 
-
 {{ opendkim.privateKey.directory }}/{{ domainName }}/{{ selector }}.private:
   file.managed:
     - mode: 600
@@ -30,8 +29,7 @@
       - service: opendkim_service
     - require:
       - pkg: opendkim_packages
-
-  {% endfor %}
+{% endfor %}
 
 {% endfor %}
 
@@ -53,7 +51,6 @@
       - service: opendkim_service
     - require:
       - pkg: opendkim_packages
-
 {% endif %}
 
 {% if 'manageSigningTable' in opendkim and 'SigningTable' in opendkim.conf and opendkim.manageSigningTable == true %}
